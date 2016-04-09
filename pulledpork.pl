@@ -80,7 +80,7 @@ if ($oSystem =~ /freebsd/i) {
     }
 }
 
-my ( $Hash, $ALogger, $Config_file, $Sorules, $Auto );
+my ( $Hash, $ALogger, $Sorules, $Auto );
 my ( $Output, $Distro, $Snort, $sid_changelog, $ignore_files );
 my ( $Snort_config, $Snort_path, $Textonly,   $grabonly,    $ips_policy, );
 my ( $pid_path,     $SigHup,     $NoDownload, $sid_msg_map, @base_url );
@@ -88,6 +88,8 @@ my ( $local_rules,  $arch,       $docs,       @records,     $enonly );
 my ( $rstate, $keep_rulefiles, $rule_file_path, $prefix, $black_list );
 my ( $Process, $hmatch, $bmatch , $sid_msg_version, $skipVerify);
 my $Sostubs = 1;
+
+my $Config_file='/etc/snort/pulledpork.conf';
 
 # verbose and quiet control print()
 # default values if not set otherwise in getopt
@@ -1564,12 +1566,6 @@ sub get_ignore_files {
 ###
 ### Main here, let's get on with it already
 ###
-
-if ( $#ARGV == -1 ) {
-    Help(
-"Please read the README for runtime options and configuration documentation"
-    );
-}
 
 ## Lets grab any runtime values and insert into our variables using getopt::long
 GetOptions(
